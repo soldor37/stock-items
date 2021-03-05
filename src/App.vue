@@ -1,28 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="content">
+      <div class="list-container storage"><product-card /></div>
+      <div class="list-container favourite"><product-card /></div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ProductCard from "./components/ProductCard.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    ProductCard,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" scoped>
+@import url('~@/styles/normalize.scss');
+*{
+  font-family: 'Roboto', sans-serif;
+}
+.content{
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: $blue-grey-light;
+  padding: 24px;
+  box-sizing: border-box;
+}
+.list-container{
+  border-radius: 16px;
+  border: 1px solid $blue-grey-dark;
+  width: 50%;
+  height: 100%;
+  background: white;
+  box-shadow: 0 0 10px $blue-grey-dark;
+  padding: 32px;
+}
+.storage{
+  margin-right: 24px;
 }
 </style>
