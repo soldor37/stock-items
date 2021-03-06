@@ -1,4 +1,4 @@
-# favorites-list
+# [stock-items](https://soldor37.github.io/stock-items/)
 
 ## Project setup
 ```
