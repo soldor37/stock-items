@@ -35,22 +35,29 @@
           <div class="sum-price__sum">{{ sumPrice }} ₽</div>
         </div>
       </div>
+      <notification-message :show="showError" @close="showError = false" />
     </div>
   </div>
 </template>
 
 <script>
 import ProductCard from "./components/ProductCard.vue";
+import NotificationMessage from "./components/NotificationMessage";
 import jsonData from "../data.json";
 export default {
   name: "App",
   components: {
     ProductCard,
+    NotificationMessage,
   },
   data() {
     return {
+      // товары на сккладе
       storageItems: jsonData.storageItems,
+      // товары в корзине
       basketItems: [],
+      // показ сообщ об ошибке
+      showError: false,
     };
   },
   methods: {
@@ -60,7 +67,10 @@ export default {
         return item.id == item_id;
       });
       if (!storageItem) return;
-
+      if(storageItem.count <= 0){
+        this.showError = true;
+        return;
+      }
       let basketItem = this.basketItems.find((item) => {
         return item.id == storageItem.id;
       });
@@ -73,7 +83,7 @@ export default {
         });
       } else {
         if (basketItem.count + 1 > storageItem.count) {
-          console.log('error')
+          this.showError = true;
         } else {
           basketItem.count++;
         }
@@ -165,6 +175,12 @@ export default {
       margin-right: 20px;
     }
     margin-bottom: 20px;
+    @media screen and(max-width: 1330px) {
+      width: 100%;
+      &:not(:nth-child(2n)) {
+        margin-right: 0px;
+      }
+    }
   }
   .sum-price {
     padding: 8px 34px;
@@ -179,7 +195,7 @@ export default {
     width: 100%;
     background: #ffd54f;
     box-shadow: inset 0 -3px 0 0 rgb(0 0 0 / 20%), 0px -4px 5px rgb(0 0 0 / 20%);
-    height: 100px;
+    min-height: 100px;
     color: $blue-grey-dark;
     font-size: 36px;
     &__text {
@@ -188,6 +204,7 @@ export default {
     }
     &__sum {
       font-weight: 400;
+      white-space: nowrap;
     }
   }
 }

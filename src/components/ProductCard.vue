@@ -31,19 +31,27 @@
     >
       <mdicon name="basket-plus" size="24" />
     </button>
-    <!-- кнопки + - -->
-    <div class="action-btns" v-else>
-      <button class="btn minus" @click="$emit('remove', item.id)">
-        <mdicon name="minus" size="24" />
+
+    <div class="action-btns" v-if="type == 'basket'">
+      <!-- удалить полностью из корзины -->
+
+      <button
+        v-if="type == 'basket'"
+        class="btn delete"
+        @click="$emit('delete', item.id)"
+      >
+        <mdicon name="delete" size="24" />
       </button>
-      <button class="btn plus" @click="$emit('buy', item.id)">
-        <mdicon name="plus" size="24" />
-      </button>
+      <!-- кнопки + - -->
+      <div class="action-btns__row">
+        <button class="btn minus" @click="$emit('remove', item.id)">
+          <mdicon name="minus" size="24" />
+        </button>
+        <button class="btn plus" @click="$emit('buy', item.id)">
+          <mdicon name="plus" size="24" />
+        </button>
+      </div>
     </div>
-    <!-- удалить полностью из корзины -->
-    <button v-if="type == 'basket'" class="btn delete" @click="$emit('delete', item.id)">
-      <mdicon name="delete" size="24" />
-    </button>
   </div>
 </template>
 
@@ -68,6 +76,11 @@ export default {
   box-sizing: border-box;
   color: $blue-grey-dark;
   position: relative;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
   &.ends {
     background: $red-lighten;
   }
@@ -78,12 +91,16 @@ export default {
     user-select: none;
     font-size: 18px;
     font-weight: 400;
+    width: 140px;
   }
   .title {
     font-size: 18px;
     font-weight: 700;
     text-align: left;
     padding-right: 8px;
+  }
+  .info {
+    width: 300px;
   }
   .btn {
     background: $red;
@@ -95,30 +112,37 @@ export default {
     box-shadow: inset 0 -3px 0 0 rgb(0 0 0 / 20%);
     transition: all 0.3s ease;
     padding: 2px 8px;
+    width: 40px;
+    height: 32px;
     &:active {
       box-shadow: none;
       transform: translateY(3px);
     }
   }
   .buy-btn {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
+    // position: absolute;
+    // bottom: 8px;
+    // right: 16px;
+    align-self: flex-end;
   }
   .action-btns {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    &__row {
+      display: flex;
+      flex-direction: row;
+    }
     .minus {
       margin-right: 4px;
     }
   }
-  .delete{
-    position: absolute;
-    top: 8px;
-    right: 16px;
+
+  .delete {
+    // position: absolute;
+    // top: 8px;
+    // right: 16px;
     background: $blue-grey-dark;
     color: white;
     box-shadow: inset 0 -3px 0 0 rgb(255 255 255 / 20%);
