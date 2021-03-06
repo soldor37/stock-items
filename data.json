@@ -1,51 +1,61 @@
 {
     "storageItems": [
         {
+            "id": 1,
             "name": "Картошка",
             "count": 24,
             "price": 100
         },
         {
+            "id": 2,
             "name": "Морковка",
             "count": 3,
             "price": 50
         },
         {
+            "id": 3,
             "name": "Редис",
             "count": 2,
             "price": 50
         },
         {
+            "id": 4,
             "name": "Петрушка",
             "count": 0,
             "price": 20
         },
         {
+            "id": 5,
             "name": "Сельдерей",
             "count": 44,
             "price": 220
         },
         {
+            "id": 6,
             "name": "Кабачок",
             "count": 10,
             "price": 65
         },
         {
+            "id": 7,
             "name": "Баклажан",
             "count": 17,
             "price": 75
         },
         {
+            "id": 8,
             "name": "Помидор",
             "count": 0,
             "price": 150
         },
         {
+            "id": 9,
             "name": "Болгарский перец",
             "count": 5,
             "price": 170
         },
         {
+            "id": 10,
             "name": "Лук",
             "count": 4,
             "price": 40
